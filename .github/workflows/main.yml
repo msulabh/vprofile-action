@@ -57,4 +57,5 @@ jobs:
     uses: sonarsource/sonarqube-quality-gate-action@master
     env:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      SONAR_HOST_URL: ${{ secrets.SO
+      SONAR_HOST_URL: ${{ secrets.SONAR_URL }} # OPTIONAL
+      DEFAULT_QUALITY_GATE: 'true'
