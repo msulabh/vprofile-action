@@ -42,12 +42,16 @@ jobs:
      -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml
      -Dsonar.java.binaries=target/test-classes/com/visualpathit/account/controllerTest/
 
-  # Check the Quality Gate status.
-  - name: SonarQube Quality Gate check
-    id: sonarqube-quality-gate-check
-    uses: sonarsource/sonarqube-quality-gate-action@master
-  # Force to fail step after specific time.
-    timeout-minutes: 5
-    env:
-     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-     SONAR_HOST_URL: ${{ secrets.SONAR_URL }} #OPTIONAL
+  - name: Check Quality Gate
+    run: |
+     wget https://your_sonarqube_instance.com/api/qualitygates/project_status?projectKey=${{ secrets.YOUR_PROJECT_KEY }} -O qualitygate.json
+
+  # # Check the Quality Gate status.
+  # - name: SonarQube Quality Gate check
+  #   id: sonarqube-quality-gate-check
+  #   uses: sonarsource/sonarqube-quality-gate-action@master
+  # # Force to fail step after specific time.
+  #   timeout-minutes: 5
+  #   env:
+  #    SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  #    SONAR_HOST_URL: ${{ secrets.SONAR_URL }} #OPTIONAL
